@@ -26,6 +26,5 @@ class User(db.Model):
                     unique=True)
     
     img_url = db.Column(db.String(),
-                    nullable=False,
-                    unique=False,
-                    default='/default.png')
+                    nullable=True,
+                    unique=False)

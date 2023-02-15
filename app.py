@@ -3,6 +3,7 @@ import os
 from flask import Flask, render_template, redirect, request
 from flask_debugtoolbar import DebugToolbarExtension
 from models import db, connect_db, User
+from helpers import *
 
 app = Flask(__name__)
 
@@ -39,14 +40,25 @@ def add_user_form():
 
 @app.route('/add-user', methods=["POST"])
 def add_user_post():
-    """"Accepts form input, Adds a user to the database"""
+    """Accepts form input, Adds a user to the database"""
 
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
     img_url = request.form["img_url"]
 
     new_user = User(first_name=first_name, last_name=last_name, img_url=img_url)
+
+    replace_user_values_empty_with_null(new_user)
+
     db.session.add(new_user)
     db.session.commit()
 
     return redirect('/users')
+
+@app.route('/users/<int:user_id>')
+def user_details(user_id):
+    """Dispalys details of one user"""
+
+    user = User.query.get_or_404(user_id)
+
+    return render_template("user-detail.html", user=user)

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{{user.first_name}} {{user.last_name}} Details{% endblock %}
+
+{% block content %}
+
+<h1>{{user.first_name}} {{user.last_name}}</h1>
+
+{% if user.img_url is none %}
+    <img src="{{url_for('static', filename='default.png')}}" alt="Image of {{user.first_name}} {{user.last_name}}">
+{% else %}
+    <img src="{{user.img_url}}" alt="Image of {{user.first_name}} {{user.last_name}}">
+{% endif %}
+
+{% endblock %}
