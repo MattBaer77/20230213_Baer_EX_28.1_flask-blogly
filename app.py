@@ -38,6 +38,14 @@ def add_user_form():
 
     return render_template('add-user.html')
 
+@app.route('/edit-user/<int:user_id>')
+def edit_user_form(user_id):
+    """Shows a form to edit a user"""
+
+    user = User.query.get_or_404(user_id)
+
+    return render_template('edit-user.html', user=user)
+
 @app.route('/add-user', methods=["POST"])
 def add_user_post():
     """Accepts form input, Adds a user to the database"""
@@ -54,6 +62,14 @@ def add_user_post():
     db.session.commit()
 
     return redirect('/users')
+
+# @app.route('/edit-user', methods=["POST"])
+# def edit_user_post():
+
+#     first_name = request.form["first_name"]
+#     last_name = request.form["last_name"]
+#     img_url = request.form["img_url"]
+
 
 @app.route('/users/<int:user_id>')
 def user_details(user_id):

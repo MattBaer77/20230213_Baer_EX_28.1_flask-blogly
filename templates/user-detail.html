@@ -4,12 +4,29 @@
 
 {% block content %}
 
-<h1>{{user.first_name}} {{user.last_name}}</h1>
+<!-- <h1>{{user.first_name}} {{user.last_name}}</h1> -->
 
-{% if user.img_url is none %}
-    <img src="{{url_for('static', filename='default.png')}}" alt="Image of {{user.first_name}} {{user.last_name}}">
-{% else %}
-    <img src="{{user.img_url}}" alt="Image of {{user.first_name}} {{user.last_name}}">
-{% endif %}
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+        {% if user.img_url is none %}
+            <img class="w-100 rounded" src="{{url_for('static', filename='default.png')}}" alt="Image of {{user.first_name}} {{user.last_name}}">
+        {% else %}
+            <img class="w-100 rounded" src="{{user.img_url}}" alt="Image of {{user.first_name}} {{user.last_name}}">
+        {% endif %}
+        </div>
+        <div class="col-8">
+            <div class="row">
+                <h1>{{user.first_name}} {{user.last_name}}</h1>
+            </div>
+            <div class="row">
+                <div class="col-6">
+               <a href="/edit-user/{{user.id}}"><button class="btn btn-primary">Edit</button></a>
+                <button class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
