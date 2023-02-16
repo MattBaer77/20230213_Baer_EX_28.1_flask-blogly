@@ -32,13 +32,13 @@ def users():
 
     return render_template('users.html', users=users)
 
-@app.route('/add-user')
+@app.route('/users/new')
 def add_user_form():
     """Shows a form to add a user"""
 
     return render_template('add-user.html')
 
-@app.route('/edit-user/<int:user_id>')
+@app.route('/users/edit/<int:user_id>')
 def edit_user_form(user_id):
     """Shows a form to edit a user"""
 
@@ -46,7 +46,7 @@ def edit_user_form(user_id):
 
     return render_template('edit-user.html', user=user)
 
-@app.route('/add-user', methods=["POST"])
+@app.route('/users/new', methods=["POST"])
 def add_user_post():
     """Accepts form input, Adds a user to the database"""
 
@@ -63,7 +63,7 @@ def add_user_post():
 
     return redirect('/users')
 
-# @app.route('/edit-user', methods=["POST"])
+# @app.route('/users/edit', methods=["POST"])
 # def edit_user_post():
 
 #     first_name = request.form["first_name"]
