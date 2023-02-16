@@ -21,8 +21,8 @@
             </div>
             <div class="row">
                 <div class="col-6">
-               <a href="/users/edit/{{user.id}}"><button class="btn btn-primary">Edit</button></a>
-                <button class="btn btn-danger">Delete</button>
+                    <a href="/users/{{user.id}}/edit"><button class="btn btn-primary">Edit</button></a>
+                    <form action="/users/{{user.id}}/delete" method="POST" style="display: inline;"><button class="btn btn-danger">Delete</button></form>
                 </div>
             </div>
         </div>
